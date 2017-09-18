@@ -4,33 +4,39 @@ import java.util.Scanner;
 
 public class SortedBalls {
 	
+	private Node rootNode = null;
+	private int count = 0; 
+	private int[] balls = null;
 	public static void main(String[] args){
-		Node rootNode = null;
-		int count = 0;
+		SortedBalls sortedBalls = new SortedBalls();
 		while(true){
 			Scanner sc = new Scanner(System.in);
 			int number = sc.nextInt();
-			if(rootNode!=null){
-				insertInSortedOrder(number,rootNode);
-			}else{
-				rootNode = new Node(number);
-			}
-			count+=1;
-			int[] arr = new int[count];
-			
-			printInOrder(rootNode,arr,new Count(0));
-			for(int i=0;i<count;i++){
-				System.out.println(arr[i]);
-			}
-			
-			
-			
+			sortedBalls.add(number);
 		}
 	}
 	
-	public static void insertInSortedOrder( int input,Node node){
+	public void add(int number){
+		if(rootNode!=null){
+			insertInSortedOrder(number,rootNode);
+			
+		}else{
+			rootNode = new Node(number);
+		}
+		
+		count+=1;
+		int[] arr = new int[count];
+		prepareInOrder(rootNode,arr,new Count(0));
+		balls = arr;
+	}
+	
+	public int[] balls(){
+		return balls; 
+	}
+	
+	public  Node insertInSortedOrder( int input,Node node){
 		if(node==null){
-			return;
+			return node;
 		}
 		if(input>node.value){
 			if(node.right==null){
@@ -45,15 +51,16 @@ public class SortedBalls {
 				insertInSortedOrder(input,node.left);
 			}
 		}
+		return node;
 	}
 	
-	public  static void printInOrder(Node node,int[] arr,Count count){
+	public  void prepareInOrder(Node node,int[] arr,Count count){
 		if(node!=null){
-			printInOrder(node.left,arr,count);
+			prepareInOrder(node.left,arr,count);
 			arr[count.getCount()] = node.value;
 			count.increment();
 			//System.out.println(node.value);
-			printInOrder(node.right,arr,count);
+			prepareInOrder(node.right,arr,count);
 			
 		}
 	}

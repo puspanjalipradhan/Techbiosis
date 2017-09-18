@@ -8,6 +8,7 @@ public class NumberWord {
 	public static final String EMPTY = "";
 	public static String[] numberNameArray = new String[51];
 	
+	
 	static {
 		
 		
