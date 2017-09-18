@@ -1,43 +1,42 @@
 package com.techbiosis.numberword;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class NumberWord {
 	
-	public static Map<Integer,String> numberWordMap = new HashMap<>();
-	
 	public static final String HUNDRED = " HUNDRED ";
 	public static final String EMPTY = "";
+	public static String[] numberNameArray = new String[51];
 	
 	static {
-		numberWordMap.put(1, "ONE");
-		numberWordMap.put(2, "TWO");
-		numberWordMap.put(3, "THREE");
-		numberWordMap.put(4, "FOUR");
-		numberWordMap.put(5, "FIVE");
-		numberWordMap.put(6, "SIX");
-		numberWordMap.put(7, "SEVEN");
-		numberWordMap.put(8, "EIGHT");
-		numberWordMap.put(9, "NINE");
-		numberWordMap.put(10, "TEN");
-		numberWordMap.put(11, "ELEVEN");
-		numberWordMap.put(12, "TWELVE");
-		numberWordMap.put(13, "THIRTEEN");
-		numberWordMap.put(14, "FOURTEEN");
-		numberWordMap.put(15, "FIFTEEN");
-		numberWordMap.put(16, "SIXTEEN");
-		numberWordMap.put(17, "SEVENTEEN");
-		numberWordMap.put(18, "EIGHTTEEN");
-		numberWordMap.put(19, "NINETEEN");
-		numberWordMap.put(20, "TWENTY");
+		
+		
+		numberNameArray[1] = "ONE";
+		numberNameArray[2] = "TWO";
+		numberNameArray[3] = "THREE";
+		numberNameArray[4] = "FOUR";
+		numberNameArray[5] = "FIVE";
+		numberNameArray[6] = "SIX";
+		numberNameArray[7] = "SEVEN";
+		numberNameArray[8] = "EIGHT";
+		numberNameArray[9] = "NINE";
+		numberNameArray[10] = "TEN";
+		numberNameArray[11] = "ELEVEN";
+		numberNameArray[12] = "TWELVE";
+		numberNameArray[13] = "THIRTEEN";
+		numberNameArray[14] = "FOURTEEN";
+		numberNameArray[15] = "FIFTEEN";
+		numberNameArray[16] = "SIXTEEN";
+		numberNameArray[17] = "SEVENTEEN";
+		numberNameArray[18] = "EIGHTTEEN";
+		numberNameArray[19] = "NINETEEN";
+		numberNameArray[20] = "TWENTY";
 		//21-29 TWENTY <number at the unit's place>
-		numberWordMap.put(30, "THIRTY");
+		numberNameArray[30] = "THIRTY";
 		//31-39 THIRTY <number at the unit's place>
-		numberWordMap.put(40, "FORTY");
+		numberNameArray[40] = "FORTY";
 		//41-49 FORTY <number at the unit's place>
-		numberWordMap.put(50, "FIFTY");
+		numberNameArray[50] = "FIFTY";
 		//51-59 FIFTY <number at the unit's place>
 		//60-99 <NUMBER AT TEN'S PLACE> + "TY" <number at the unit's place>
 		
@@ -59,7 +58,7 @@ public class NumberWord {
 			return "ONE BILLION";
 		}
 		
-		return millionConversion(input);
+		return millionConversion(input).trim();
 	}
 	
 	public String millionConversion(int input){
@@ -110,7 +109,13 @@ public class NumberWord {
 		return "";
 	}
 	public String getNumberWord(int input){
-		return numberWordMap.get(input);
+		//return numberWordMap.get(input);
+		if(input<=50){
+			return numberNameArray[input];
+		}else{
+			return null;
+		}
+		
 	}
 }
 

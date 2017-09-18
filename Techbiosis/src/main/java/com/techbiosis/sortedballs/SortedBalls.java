@@ -6,6 +6,7 @@ public class SortedBalls {
 	
 	public static void main(String[] args){
 		Node rootNode = null;
+		int count = 0;
 		while(true){
 			Scanner sc = new Scanner(System.in);
 			int number = sc.nextInt();
@@ -14,7 +15,15 @@ public class SortedBalls {
 			}else{
 				rootNode = new Node(number);
 			}
-			printInOrder(rootNode);
+			count+=1;
+			int[] arr = new int[count];
+			
+			printInOrder(rootNode,arr,new Count(0));
+			for(int i=0;i<count;i++){
+				System.out.println(arr[i]);
+			}
+			
+			
 			
 		}
 	}
@@ -38,11 +47,14 @@ public class SortedBalls {
 		}
 	}
 	
-	public static void printInOrder(Node node){
+	public  static void printInOrder(Node node,int[] arr,Count count){
 		if(node!=null){
-			printInOrder(node.left);
-			System.out.println(node.value);
-			printInOrder(node.right);
+			printInOrder(node.left,arr,count);
+			arr[count.getCount()] = node.value;
+			count.increment();
+			//System.out.println(node.value);
+			printInOrder(node.right,arr,count);
+			
 		}
 	}
 }
@@ -55,5 +67,20 @@ class Node {
 	
 	public Node(int value){
 		this.value = value;
+	}
+}
+
+class Count {
+	int count;
+	public Count(int count){
+		this.count = count;
+	}
+	
+	public void increment(){
+		this.count= count+1;
+	}
+	
+	public int getCount(){
+		return this.count;
 	}
 }
